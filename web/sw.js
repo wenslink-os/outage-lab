@@ -1,7 +1,7 @@
 // Service worker: caches this app's own files so the simulator itself survives an outage.
 // Bump VERSION whenever any file in ASSETS changes (tests/sw.test.js checks the list is complete).
 
-const VERSION = 'outage-lab-v1.0.0';
+const VERSION = 'outage-lab-v1.1.0';
 const ASSETS = [
   './',
   './index.html',

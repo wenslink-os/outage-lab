@@ -7,7 +7,7 @@ Thank you for helping. Outage Lab stays free, offline-first and dependency-free 
 - No paid services, API keys, trackers, external fonts or CDN scripts in `web/`. The test suite fails if the page loads anything from another origin.
 - Keep `web/core/` free of DOM and Node APIs so it runs in both the page and the tests.
 - Any change to features or fallbacks must keep `tests/consistency.test.js` passing: the engine's table must describe what the client code really does.
-- Every UI string needs an English and an Assamese entry in `web/core/i18n.js`. Placeholders must match.
+- Every UI string needs an entry in `web/core/i18n.js`. The interface is English only.
 - When you change a file in `web/`, bump `VERSION` in `web/sw.js`, and add new files to its `ASSETS` list.
 
 ## Workflow
@@ -21,10 +21,6 @@ npm start
 1. Open an issue describing the change, especially for new features or failure types.
 2. Keep pull requests focused on one change.
 3. Include tests for new behaviour and describe how you checked the UI in a real browser.
-
-## Adding a language
-
-Copy the `en` block in `web/core/i18n.js`, translate every value, add the code to `LANGUAGES`, and update the language button in `web/ui/app.js`.
 
 ## Adding a feature to the sample app
 

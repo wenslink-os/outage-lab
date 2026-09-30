@@ -5,7 +5,7 @@ import {
   PRESETS, getPreset, matchPreset, cloneScenario, encodeScenario, decodeScenario,
   toJSON, fromJSON, randomScenario
 } from '../core/scenarios.js';
-import { translate, LANGUAGES } from '../core/i18n.js';
+import { translate } from '../core/i18n.js';
 import { createServices } from '../core/services.js';
 import { createFragileClient, createResilientClient, JOURNEY } from '../core/clients.js';
 import { createScaledClock } from '../core/clock.js';
@@ -13,11 +13,9 @@ import { openBestStore } from '../core/store.js';
 import { renderGraph } from './graph.js';
 
 const CLOCK_SCALE = 0.25;
-const LANG_KEY = 'outage-lab:lang';
 const SUITE = suiteScore(PRESETS.map((p) => p.scenario));
 
 const state = {
-  lang: initialLanguage(),
   scenario: getPreset('allGood'),
   graphMode: 'resilient',
   evaluation: null,
@@ -30,7 +28,7 @@ const state = {
 };
 
 const $ = (id) => document.getElementById(id);
-const t = (key, params) => translate(state.lang, key, params);
+const t = translate;
 
 function h(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
@@ -46,16 +44,6 @@ function h(tag, attrs = {}, ...children) {
     node.append(c instanceof Node ? c : document.createTextNode(String(c)));
   }
   return node;
-}
-
-function initialLanguage() {
-  try {
-    const saved = localStorage.getItem(LANG_KEY);
-    if (LANGUAGES.includes(saved)) return saved;
-  } catch {
-    // Storage blocked: fall through to the browser language.
-  }
-  return (navigator.language || '').toLowerCase().startsWith('as') ? 'as' : 'en';
 }
 
 function setStatus(id, text) {
@@ -90,13 +78,9 @@ function loadFromHash() {
 /* ---------- static text ---------- */
 
 function renderStaticText() {
-  document.documentElement.lang = state.lang;
   document.title = t('app.title');
   setStatus('app-title', t('app.title'));
   setStatus('app-tagline', t('app.tagline'));
-  const lang = $('lang-toggle');
-  lang.textContent = t('app.lang');
-  lang.setAttribute('aria-label', t('app.langLabel'));
   setStatus('services-title', t('panel.services'));
   setStatus('device-title', t('panel.device'));
   setStatus('scenarios-title', t('panel.scenarios'));
@@ -409,11 +393,6 @@ async function boot() {
   const clock = createScaledClock(CLOCK_SCALE);
   state.flushClient = createResilientClient({ services: createServices({ getScenario: () => state.scenario, clock }), clock, store: state.storeInfo.store });
 
-  $('lang-toggle').addEventListener('click', () => {
-    state.lang = state.lang === 'en' ? 'as' : 'en';
-    try { localStorage.setItem(LANG_KEY, state.lang); } catch { /* storage blocked */ }
-    renderAll();
-  });
   $('ctx-cacheWarm').addEventListener('change', (ev) => {
     const next = cloneScenario(state.scenario);
     next.context.cacheWarm = ev.target.checked;

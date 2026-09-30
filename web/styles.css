@@ -13,7 +13,7 @@
   --degraded-bg: #f6e8cf;
   --broken-bg: #f7dcd9;
   --focus: #1b5fd1;
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Bengali", "Nirmala UI", sans-serif;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
   --radius-control: 6px;
   --radius-pill: 999px;
   color-scheme: light dark;
@@ -80,18 +80,6 @@ a { color: var(--metal); }
 }
 
 .tagline { max-width: 60ch; margin-top: 0.5rem; color: var(--ink-soft); font-size: 1.05rem; }
-
-.lang {
-  flex: none;
-  font: inherit;
-  font-weight: 600;
-  background: transparent;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  border-radius: var(--radius-control);
-  padding: 0.4rem 0.9rem;
-  cursor: pointer;
-}
 
 .layout {
   display: grid;

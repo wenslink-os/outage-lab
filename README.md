@@ -18,7 +18,6 @@ Everything is simulated in the browser. There are no real accounts, API keys, pa
 - **Offline queue.** Work saved during an outage can be sent after you restore the services. Payments use an idempotency key, so a replayed order is never charged twice.
 - **Data ownership.** Download everything the local-first app stored on the device as JSON.
 - **Share and save.** Every scenario has a compact share link (for example `#s=v1-d.u.u.u.u.u.u-11`) and can be downloaded or loaded as a JSON file.
-- **English and Assamese** interface.
 - **The page itself survives an outage.** A service worker caches the app after the first visit, and it loads no external fonts, scripts or images.
 
 ## Results for the built-in scenarios
@@ -101,7 +100,7 @@ web/
     services.js       simulated services with an idempotent payment ledger
     clients.js        the cloud-coupled and local-first client implementations
     clock.js          scaled logical clock
-    i18n.js           English and Assamese strings
+    i18n.js           English UI strings
   ui/
     app.js, graph.js
 scripts/serve.js      zero-dependency local server
@@ -113,7 +112,7 @@ The `core` modules are plain ES modules with no browser or Node dependencies, so
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md). Good first contributions: another sample app, another language, a new failure type such as packet loss or partial DNS caching, or a pattern such as bulkheads or request hedging.
+Read [CONTRIBUTING.md](CONTRIBUTING.md). Good first contributions: another sample app, a new failure type such as packet loss or partial DNS caching, or a pattern such as bulkheads or request hedging.
 
 ## License
 

@@ -34,7 +34,6 @@ const pills = (doc, col) => [...doc.querySelectorAll(`#feature-table tbody td:nt
 test('page boots from a share link and responds to the controls', async () => {
   const dom = new JSDOM(html, { url: 'http://localhost/#s=v1-d.u.u.u.u.u.u-11', pretendToBeVisual: true });
   installGlobals(dom.window);
-  localStorage.setItem('outage-lab:lang', 'en');
   await import('../web/ui/app.js');
   const doc = dom.window.document;
 
@@ -75,13 +74,10 @@ test('page boots from a share link and responds to the controls', async () => {
   cache.dispatchEvent(new dom.window.Event('change', { bubbles: true }));
   assert.match(dom.window.location.hash, /-01$/);
 
-  // Language toggle.
-  doc.getElementById('lang-toggle').click();
-  assert.equal(doc.documentElement.lang, 'as');
-  assert.equal(doc.getElementById('results-title').textContent, 'এতিয়াও কি চলে');
-  assert.equal(localStorage.getItem('outage-lab:lang'), 'as');
-  doc.getElementById('lang-toggle').click();
+  // English only: no language toggle, static English text.
+  assert.equal(doc.getElementById('lang-toggle'), null);
   assert.equal(doc.documentElement.lang, 'en');
+  assert.equal(doc.getElementById('results-title').textContent, 'What still works');
 
   // Hash navigation loads a scenario.
   dom.window.location.hash = '#s=v1-u.u.u.d.u.u.u-11';
