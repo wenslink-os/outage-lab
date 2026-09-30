@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Outage Lab</title>
+  <meta name="description" content="Switch off the services an app depends on and see which features keep working. A free, offline-first teaching simulator.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#results">Skip to results</a>
+  <header class="masthead">
+    <div class="masthead-text">
+      <h1 id="app-title">Outage Lab</h1>
+      <p id="app-tagline" class="tagline"></p>
+    </div>
+    <button id="lang-toggle" class="lang" type="button"></button>
+  </header>
+
+  <main class="layout">
+    <aside class="board" aria-labelledby="services-title">
+      <section class="board-group">
+        <h2 id="services-title"></h2>
+        <div id="dep-switches" class="switches"></div>
+      </section>
+      <section class="board-group">
+        <h2 id="device-title"></h2>
+        <label class="check"><input type="checkbox" id="ctx-cacheWarm"> <span id="ctx-cacheWarm-label"></span></label>
+        <label class="check"><input type="checkbox" id="ctx-hasSession"> <span id="ctx-hasSession-label"></span></label>
+      </section>
+      <section class="board-group">
+        <h2 id="scenarios-title"></h2>
+        <div id="presets" class="presets"></div>
+        <button id="chaos" type="button" class="btn btn-quiet"></button>
+      </section>
+      <section class="board-group">
+        <h2 id="share-title"></h2>
+        <div class="share-actions">
+          <button id="copy-link" type="button" class="btn btn-quiet"></button>
+          <button id="download-scenario" type="button" class="btn btn-quiet"></button>
+          <label class="btn btn-quiet file-btn"><span id="upload-label"></span><input id="upload-scenario" type="file" accept="application/json,.json"></label>
+        </div>
+        <p id="share-status" class="status-line" role="status" aria-live="polite"></p>
+      </section>
+    </aside>
+
+    <div class="stage">
+      <section id="results" class="results" aria-labelledby="results-title">
+        <div class="results-head">
+          <h2 id="results-title"></h2>
+          <p id="scenario-name" class="scenario-name"></p>
+        </div>
+        <div id="scores" class="scores"></div>
+        <div class="table-wrap">
+          <table id="feature-table" class="feature-table"></table>
+        </div>
+      </section>
+
+      <section class="graph" aria-labelledby="graph-title">
+        <div class="section-head">
+          <h2 id="graph-title"></h2>
+          <div id="graph-mode" class="toggle" role="group"></div>
+        </div>
+        <p id="graph-caption" class="caption"></p>
+        <div id="graph" class="graph-canvas"></div>
+      </section>
+
+      <section class="journey" aria-labelledby="journey-title">
+        <div class="section-head">
+          <h2 id="journey-title"></h2>
+          <button id="run-journey" type="button" class="btn btn-primary"></button>
+        </div>
+        <p id="journey-caption" class="caption"></p>
+        <div id="journey-columns" class="journey-columns"></div>
+        <div class="queue">
+          <p id="queue-status" class="status-line" role="status" aria-live="polite"></p>
+          <div class="queue-actions">
+            <button id="flush-queue" type="button" class="btn btn-quiet"></button>
+            <button id="export-device" type="button" class="btn btn-quiet"></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p id="footer-text"></p>
+    <p><span id="storage-status"></span> <span id="offline-status"></span></p>
+    <p><a id="source-link" href="https://github.com/wenslink-os/outage-lab"></a>. MIT license. Built by WENSLink.</p>
+  </footer>
+
+  <script type="module" src="ui/app.js"></script>
+</body>
+</html>

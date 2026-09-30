@@ -1,0 +1,11 @@
+{
+  "name": "Outage Lab",
+  "short_name": "Outage Lab",
+  "description": "See which app features survive when outside services fail.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e6ebef",
+  "theme_color": "#16202b",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
