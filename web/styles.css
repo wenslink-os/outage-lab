@@ -116,10 +116,14 @@ a { color: var(--metal); }
   overflow: hidden;
 }
 
-.rocker label { position: relative; }
+.rocker label { position: relative; display: flex; }
 .rocker input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
 .rocker span {
-  display: block;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   text-align: center;
   padding: 0.45rem 0.25rem;
   font-size: 0.9rem;
@@ -172,7 +176,9 @@ a { color: var(--metal); }
 
 .status-line { min-height: 1.5em; margin-top: 0.5rem; font-size: 0.9rem; }
 
-.stage { padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 3rem; display: grid; gap: 2.5rem; min-width: 0; }
+/* One explicit minmax(0, 1fr) column: with the implicit auto column the stage grew to the
+   min-content width of the wide table and the graph (560px) and pushed the page sideways on phones. */
+.stage { padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 3rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; min-width: 0; }
 
 .results-head, .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 1rem; }
 .stage h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; }

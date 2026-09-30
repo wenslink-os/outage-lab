@@ -18,6 +18,7 @@ Everything is simulated in the browser. There are no real accounts, API keys, pa
 - **Offline queue.** Work saved during an outage can be sent after you restore the services. Payments use an idempotency key, so a replayed order is never charged twice.
 - **Data ownership.** Download everything the local-first app stored on the device as JSON.
 - **Share and save.** Every scenario has a compact share link (for example `#s=v1-d.u.u.u.u.u.u-11`) and can be downloaded or loaded as a JSON file.
+- **Works on phones.** On narrow screens the controls stack above the results, and the wide comparison table scrolls inside its own box instead of widening the page.
 - **The page itself survives an outage.** A service worker caches the app after the first visit, and it loads no external fonts, scripts or images.
 
 ## Results for the built-in scenarios
