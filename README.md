@@ -4,6 +4,8 @@
 
 Outage Lab is a free, offline-first teaching simulator. Flip switches to cut the internet, break DNS, take login offline or make a payment API time out. The same small shop is built twice, once coupled to the cloud and once local-first, and the lab shows which features keep working, which degrade, and which break, and why.
 
+![Outage Lab: airplane mode, cloud-coupled app 0, local-first app 63](docs/demo.gif)
+
 Everything is simulated in the browser. There are no real accounts, API keys, payments or network calls, and no runtime dependencies.
 
 ## What you can do
